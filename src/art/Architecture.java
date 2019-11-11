@@ -1,8 +1,5 @@
 package art;
 
-import trade.Buyer;
-import trade.Seller;
-
 public class Architecture extends Artwork {
 	
 	private final double length;
@@ -11,8 +8,7 @@ public class Architecture extends Artwork {
 	private final double volume;
 	
 	public Architecture(String name, PriceMultiplier style, double length, double width, double height) {
-		this.name = name;
-		this.style = style;
+		super(name, style);
 		this.length = length;
 		this.width = width;
 		this.height = height;
@@ -42,15 +38,7 @@ public class Architecture extends Artwork {
 
 	@Override
 	public boolean isTradable() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void tradeToBuyer(Buyer buyer, Seller seller) {
-		if (this.calculateCost() <= buyer.getWalletValue()) {
-			;
-		}
+		return (this.style.name != "Renaissance");
 	}
 
 }
