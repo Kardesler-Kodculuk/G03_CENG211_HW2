@@ -42,15 +42,7 @@ public class Architecture extends Artwork {
 
 	@Override
 	public boolean isTradable() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void tradeToBuyer(Buyer buyer, Seller seller) {
-		if (this.calculateCost() <= buyer.getWalletValue()) {
-			;
-		}
+		return (this.style.name != "Renaissance");
 	}
 
 }
