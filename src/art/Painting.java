@@ -22,7 +22,7 @@ public class Painting extends Artwork {
 	}
 	
 	public Artist getArtist() {
-		return Artist;
+		return artist;
 	}
 	
 	public double getLength() {
