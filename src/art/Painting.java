@@ -1,6 +1,7 @@
 package art;
 
 import trade.Buyer;
+import people.Artist;
 import trade.Seller;
 
 public class Painting extends Artwork {
