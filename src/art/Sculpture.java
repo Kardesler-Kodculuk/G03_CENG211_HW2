@@ -1,37 +1,31 @@
 package art;
 
-import people.Architect;
+import people.Artist;
 
 public class Sculpture extends Artwork {
 
-	private Architect[] architects;
-	private double length;
-	private double width;
-	private double height;
+	private Artist artist;
+	private PriceMultiplier material;
+	private double weight;
 	
-	public Sculpture(String name, PriceMultiplier style, Architect[] architects, 
-			double length, double width, double height) {
+	public Sculpture(String name, PriceMultiplier style, Artist artist,
+			PriceMultiplier material, double weight) {
 		super(name, style);
-		this.architects = architects;
-		this.length = length;
-		this.width = width;
-		this.height = height;
-	}
-	
-	public Architect[] getArchitects() {
-		return architects;
-	}
-	
-	public double getLength() {
-		return length;
+		this.artist = artist;
+		this.material = material;
+		this.weight = weight;
 	}
 
-	public double getWidth() {
-		return width;
+	public Artist getArtist() {
+		return artist;
 	}
 
-	public double getHeight() {
-		return height;
+	public PriceMultiplier getMaterial() {
+		return material;
+	}
+
+	public double getWeight() {
+		return weight;
 	}
 
 	@Override
