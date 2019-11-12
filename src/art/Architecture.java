@@ -1,11 +1,17 @@
 package art;
 
+import java.util.ArrayList;
+
+import people.Architect;
+
+
 public class Architecture extends Artwork {
 	
 	private final double length;
 	private final double width;
 	private final double height;
 	private final double volume;
+	private ArrayList<Architect> architects;
 	
 	public Architecture(String name, PriceMultiplier style, double length, double width, double height) {
 		super(name, style);
@@ -13,6 +19,7 @@ public class Architecture extends Artwork {
 		this.width = width;
 		this.height = height;
 		this.volume = length * width * height;
+		this.architects = new ArrayList<Architect>();
 	}
 
 	@Override
@@ -39,6 +46,14 @@ public class Architecture extends Artwork {
 	@Override
 	public boolean isTradable() {
 		return (this.style.name != "Renaissance");
+	}
+	
+	/**
+	 * Add an architect to the architects list of the Architecture.
+	 * @param architect
+	 */
+	public void addArchitect(Architect architect) {
+		this.architects.add(architect);
 	}
 
 }

@@ -70,20 +70,22 @@ public class CSVReader {
 	/**
 	 * Categorise artists and architects.
 	 * @param line
+	 * @return True if architect or artist found or if the line is empty.
 	 */
-	private static void categoriseFirstPass(String line) {
+	private static boolean categoriseFirstPass(String line) {
 		if (line.equals("")) {
-			return;
+			return true;
 		}
 		String[] args = line.split(",");
 		switch (args[0]) {
 		case "4":
 			createArtist(args);
-			break;
+			return true;
 		case "5":
-			break;
+			createArchitect(args);
+			return true;
 		default:
-			break;
+			return false;
 		}
 	}
 	
@@ -91,8 +93,17 @@ public class CSVReader {
 		paintings.add(new Painting(args[1], decideMultiplier(args[2]), findArtist(args[3]), Double.parseDouble(args[4]), Double.parseDouble(args[5])));
 	}
 	
-	private static void createSculpture(String[] args) {}
-	private static void createArchitecture(String[] args) {}
+	private static void createSculpture(String[] args) {
+		sculptures.add(new Sculpture(args[1], decideMultiplier(args[2]), findArtist(args[3]), decideMultiplier(args[4]), Double.parseDouble(args[5])));
+	}
+
+	private static void createArchitecture(String[] args) {
+		Architecture arch = new Architecture(args[1], decideMultiplier(args[2]), Double.parseDouble(args[3]), Double.parseDouble(args[4]), Double.parseDouble(args[5]));
+		for (int i = 5; i < args.length; i++) {
+			arch.addArchitect(findArchitect(args[i]));
+		}
+		architectures.add(arch);
+	}
 	
 	private static void categoriseSecondPass(String line) {
 		if (line.equals("")) {
@@ -128,9 +139,54 @@ public class CSVReader {
 		}
 		
 		for (String line : lines) {
-			categoriseFirstPass(line);
+			if (categoriseFirstPass(line)) {
+				lines.remove(line);
+			}
 		}
 		
-		
+		for (String line : lines) {
+			categoriseSecondPass(line);
+		}
 	}
+	
+	/**
+	 * Return the paintings array list.
+	 * @return
+	 */
+	public static ArrayList<Painting> getPaintings() {
+		return paintings;
+	}
+
+	/**
+	 * Return the sculptures array list.
+	 * @return
+	 */
+	public static ArrayList<Sculpture> getSculptures() {
+		return sculptures;
+	}
+
+	/**
+	 * Return the architectures array list.
+	 * @return
+	 */
+	public static ArrayList<Architecture> getArchitectures() {
+		return architectures;
+	}
+
+	/**
+	 * Return the artists array list.
+	 * @return
+	 */
+	public static ArrayList<Artist> getArtists() {
+		return artists;
+	}
+
+	/**
+	 * Return the architects array list.
+	 * @return
+	 */
+	public static ArrayList<Architect> getArchitects() {
+		return architects;
+	}
+	
 }
