@@ -1,26 +1,26 @@
 package art_vault;
 
-class A {
-	public void badger() {
-		System.out.println("A");
-	}
-	public void cat() {
-		badger();
-	}
-}
+import java.util.List;
 
-class B extends A {
-	@Override
-	public void badger() {
-		System.out.println("B");
-	}
-}
+import art.Painting;
+import people.Artist;
+import utility.CSVReader;
 
 public class ArtVaultApp {
 
 	public static void main(String[] args) {
-		B b = new B();
-		b.cat();
+		CSVReader.readFile("CENG211_HW2_ArtVaultData.csv");
+		List<Painting> paintings = CSVReader.getPaintings();
+		List<Artist> artists = CSVReader.getArtists();
+		for (Painting painting : paintings) {
+			System.out.println(painting);
+		}
+		
+		System.out.println("\n------------------------------------------\n");
+		
+		for (Artist artist : artists) {
+			System.out.println(artist);
+		}
 
 	}
 

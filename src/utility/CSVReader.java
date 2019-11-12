@@ -18,8 +18,7 @@ public class CSVReader {
 	private static ArrayList<Architecture> architectures = new ArrayList<Architecture>();
 	private static ArrayList<Artist> artists = new ArrayList<Artist>();
 	private static ArrayList<Architect> architects = new ArrayList<Architect>();
-	
-	private static PriceMultiplier decideMultiplier(String key) {return null;}
+
 
 	/**
 	 * Create an artist.
@@ -89,22 +88,38 @@ public class CSVReader {
 		}
 	}
 	
+	/**
+	 * Create a painting and add it to paintings.
+	 * @param args
+	 */
 	private static void createPainting(String[] args) {
-		paintings.add(new Painting(args[1], decideMultiplier(args[2]), findArtist(args[3]), Double.parseDouble(args[4]), Double.parseDouble(args[5])));
+		paintings.add(new Painting(args[1], PriceMultiplier.decideMultiplier(args[2], "painting"), findArtist(args[3]), Double.parseDouble(args[4]), Double.parseDouble(args[5])));
 	}
 	
+	/**
+	 * Create a sculpture and add it to sculptures.
+	 * @param args
+	 */
 	private static void createSculpture(String[] args) {
-		sculptures.add(new Sculpture(args[1], decideMultiplier(args[2]), findArtist(args[3]), decideMultiplier(args[4]), Double.parseDouble(args[5])));
+		sculptures.add(new Sculpture(args[1], PriceMultiplier.decideMultiplier(args[2], "sculpture-style"), findArtist(args[3]), PriceMultiplier.decideMultiplier(args[4], "sculpture"), Double.parseDouble(args[5])));
 	}
 
+	/**
+	 * Create an architecture and add it to architectures.
+	 * @param args
+	 */
 	private static void createArchitecture(String[] args) {
-		Architecture arch = new Architecture(args[1], decideMultiplier(args[2]), Double.parseDouble(args[3]), Double.parseDouble(args[4]), Double.parseDouble(args[5]));
+		Architecture arch = new Architecture(args[1], PriceMultiplier.decideMultiplier(args[2], "architecture"), Double.parseDouble(args[3]), Double.parseDouble(args[4]), Double.parseDouble(args[5]));
 		for (int i = 5; i < args.length; i++) {
 			arch.addArchitect(findArchitect(args[i]));
 		}
 		architectures.add(arch);
 	}
 	
+	/**
+	 * Categorises the artworks in the second pass of the for loop.
+	 * @param line Line to categorise.
+	 */
 	private static void categoriseSecondPass(String line) {
 		if (line.equals("")) {
 			return;
@@ -125,12 +140,17 @@ public class CSVReader {
 		}
 		
 	}
+	
+	/**
+	 * Read the csv file to parse data.
+	 * @param fileName Name of the file to parse.
+	 */
 	public static void readFile(String fileName) {
 		ArrayList<String> lines = new ArrayList<String>();
 		try {
 			Scanner fileReader = new Scanner(new File(fileName));
 			while (fileReader.hasNextLine()) {
-				lines.add(fileReader.nextLine());
+				lines.add(fileReader.nextLine()); // Add to a lines list to be passed twice.
 			}
 			fileReader.close();
 		} catch (FileNotFoundException e) {
@@ -138,14 +158,12 @@ public class CSVReader {
 			e.printStackTrace();
 		}
 		
-		for (String line : lines) {
-			if (categoriseFirstPass(line)) {
-				lines.remove(line);
-			}
+		for (String line : lines) { // We first need to parse the artist and architects.
+			categoriseFirstPass(line); // This is done to fasten the second run by removing reduntant and parsed lines.
 		}
 		
 		for (String line : lines) {
-			categoriseSecondPass(line);
+			categoriseSecondPass(line); // This parses the remaining lines.
 		}
 	}
 	

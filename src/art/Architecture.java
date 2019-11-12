@@ -55,5 +55,17 @@ public class Architecture extends Artwork {
 	public void addArchitect(Architect architect) {
 		this.architects.add(architect);
 	}
+	
+	public double getLength() {
+		return length;
+	}
+
+	public double getWidth() {
+		return width;
+	}
+
+	public double getHeight() {
+		return height;
+	}
 
 }

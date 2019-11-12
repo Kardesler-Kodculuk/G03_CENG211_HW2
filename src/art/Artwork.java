@@ -33,4 +33,9 @@ public abstract class Artwork implements IComparable<Artwork>, ITradable {
 	 */
 	public abstract double calculateCost();
 	
+	@Override
+	public String toString() {
+		return this.name;
+	}
+	
 }

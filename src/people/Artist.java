@@ -14,4 +14,7 @@ public class Artist extends Person {
 		return periods.clone();
 	} 
 
+	public String toString() {
+		return this.getName();
+	}
 }
