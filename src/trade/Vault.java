@@ -4,6 +4,7 @@ import java.util.List;
 
 import art.*;
 import people.*;
+import utility.IComparable;
 
 public class Vault implements ISearchable {
 	

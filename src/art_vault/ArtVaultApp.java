@@ -4,23 +4,27 @@ import java.util.List;
 
 import art.Painting;
 import people.Artist;
+import trade.Buyer;
+import trade.Seller;
+import trade.Vault;
 import utility.CSVReader;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 public class ArtVaultApp {
 
+	private static List<Buyer> createBuyersList(Integer numberOfBuyers) {
+		List<Buyer> buyers = new ArrayList<Buyer>();
+		for (int i = 0; i < numberOfBuyers; i++) {
+			buyers.set(i, new Buyer());
+		}
+		return buyers;
+	}
 	public static void main(String[] args) {
 		CSVReader.readFile("CENG211_HW2_ArtVaultData.csv");
-		List<Painting> paintings = CSVReader.getPaintings();
-		List<Artist> artists = CSVReader.getArtists();
-		for (Painting painting : paintings) {
-			System.out.println(painting);
-		}
-		
-		System.out.println("\n------------------------------------------\n");
-		
-		for (Artist artist : artists) {
-			System.out.println(artist);
-		}
+		Vault artVault = new Vault(CSVReader.getArchitects(), CSVReader.getArtists(),
+				CSVReader.getPaintings(), CSVReader.getSculptures(),
+				CSVReader.getArchitectures(), new Seller(), createBuyersList(5));
 
 	}
 

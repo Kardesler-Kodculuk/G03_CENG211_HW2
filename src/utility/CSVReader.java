@@ -3,6 +3,7 @@ package utility;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import art.Architecture;
@@ -12,12 +13,12 @@ import art.Sculpture;
 import people.Architect;
 import people.Artist;
 
-public class CSVReader {
-	private static ArrayList<Painting> paintings = new ArrayList<Painting>();
-	private static ArrayList<Sculpture> sculptures = new ArrayList<Sculpture>();
-	private static ArrayList<Architecture> architectures = new ArrayList<Architecture>();
-	private static ArrayList<Artist> artists = new ArrayList<Artist>();
-	private static ArrayList<Architect> architects = new ArrayList<Architect>();
+public final class CSVReader {
+	private static List<Painting> paintings = new ArrayList<Painting>();
+	private static List<Sculpture> sculptures = new ArrayList<Sculpture>();
+	private static List<Architecture> architectures = new ArrayList<Architecture>();
+	private static List<Artist> artists = new ArrayList<Artist>();
+	private static List<Architect> architects = new ArrayList<Architect>();
 
 
 	/**
@@ -171,7 +172,7 @@ public class CSVReader {
 	 * Return the paintings array list.
 	 * @return
 	 */
-	public static ArrayList<Painting> getPaintings() {
+	public static List<Painting> getPaintings() {
 		return paintings;
 	}
 
@@ -179,7 +180,7 @@ public class CSVReader {
 	 * Return the sculptures array list.
 	 * @return
 	 */
-	public static ArrayList<Sculpture> getSculptures() {
+	public static List<Sculpture> getSculptures() {
 		return sculptures;
 	}
 
@@ -187,7 +188,7 @@ public class CSVReader {
 	 * Return the architectures array list.
 	 * @return
 	 */
-	public static ArrayList<Architecture> getArchitectures() {
+	public static List<Architecture> getArchitectures() {
 		return architectures;
 	}
 
@@ -195,7 +196,7 @@ public class CSVReader {
 	 * Return the artists array list.
 	 * @return
 	 */
-	public static ArrayList<Artist> getArtists() {
+	public static List<Artist> getArtists() {
 		return artists;
 	}
 
@@ -203,7 +204,7 @@ public class CSVReader {
 	 * Return the architects array list.
 	 * @return
 	 */
-	public static ArrayList<Architect> getArchitects() {
+	public static List<Architect> getArchitects() {
 		return architects;
 	}
 	
