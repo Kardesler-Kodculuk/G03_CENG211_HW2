@@ -24,28 +24,22 @@ public class Architecture extends Artwork {
 
 	@Override
 	public int compareTo(Artwork other, String key) {
-		Architecture architecture = (Architecture) other;
-		if (architecture.equals(this)) {
-			return 0;
+		if(key == "name" || key == "style") {
+			return super.compareTo(other, key);
 		}
-		switch (key) {
-		case "name":
-			return this.name.compareTo(architecture.name);
-		case "style":
-			return this.style.compareTo(architecture.style, "name");
+		else {
+			throw new IllegalArgumentException();
 		}
-		
-		return 1;
 	}
 
 	@Override
 	public double calculateCost() {
-		return this.volume * this.style.price;
+		return this.volume * this.getStyle().price;
 	}
 
 	@Override
 	public boolean isTradable() {
-		return (this.style.name != "Renaissance");
+		return (this.getStyle().name != "Renaissance");
 	}
 	
 	/**

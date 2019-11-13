@@ -44,5 +44,14 @@ public abstract class Artwork implements IComparable<Artwork>, ITradable {
 	public String toString() {
 		return this.name;
 	}
-	
+	public int compareTo(Artwork other, String key) throws IllegalArgumentException{
+		switch(key) {
+		case "name":
+			return this.name.compareTo(other.getName());
+		case "style":
+			return this.style.compareTo(other.getStyle(), key);
+			default:
+				throw new IllegalArgumentException();
+		}
+	}
 }
