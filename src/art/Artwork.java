@@ -6,12 +6,19 @@ import trade.Seller;
 import utility.IComparable;
 
 public abstract class Artwork implements IComparable<Artwork>, ITradable {
-	protected String name;
-	protected PriceMultiplier style;
+	private String name;
+	private PriceMultiplier style;
 	
 	public Artwork(String name, PriceMultiplier style) {
 		this.name = name;
 		this.style = style;
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	public PriceMultiplier getStyle() {
+		return this.getStyle();
 	}
 	/**
 	 * Accessed from Vault, this trades this artifact to a buyer from a seller.
