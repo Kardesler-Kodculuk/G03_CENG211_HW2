@@ -35,8 +35,15 @@ public class Painting extends Artwork {
 	
 	@Override
 	public int compareTo(Artwork other, String key) {
-		// TODO Auto-generated method stub
-		return 0;
+		if(key == "name" || key == "style") {
+			return super.compareTo(other, key);
+		}
+		else if(key == "artist") {
+			return this.artist.getName().compareTo(other.getName());
+		}
+		else {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	@Override
