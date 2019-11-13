@@ -38,8 +38,9 @@ public class Painting extends Artwork {
 		if(key == "name" || key == "style") {
 			return super.compareTo(other, key);
 		}
-		else if(key == "artist") {
-			return this.artist.getName().compareTo(other.getName());
+		Painting paint = (Painting) other;
+		if(key == "artist") {
+			return this.artist.getName().compareTo(paint.artist.getName());
 		}
 		else {
 			throw new IllegalArgumentException();

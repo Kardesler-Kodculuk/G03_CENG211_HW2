@@ -30,8 +30,20 @@ public class Sculpture extends Artwork {
 
 	@Override
 	public int compareTo(Artwork other, String key) {
-		// TODO Auto-generated method stub
-		return 0;
+		if(key == "name" || key == "style") {
+			return super.compareTo(other, key);
+		}
+		Sculpture scu = (Sculpture) other;
+		
+		if(key == "artist") {
+			return this.artist.getName().compareTo(scu.artist.getName());
+		}
+		else if(key == "material") {
+			return this.material.name.compareTo(scu.artist.getName());
+		}
+		else {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	@Override
