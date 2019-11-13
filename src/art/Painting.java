@@ -49,20 +49,40 @@ public class Painting extends Artwork {
 
 	@Override
 	public boolean isTradable() {
-		// TODO Auto-generated method stub
-		return false;
+		if (this.getStyle().name == "Gothic") {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 
 	@Override
 	public void tradeToBuyer(Buyer buyer, Seller seller) {
-		// TODO Auto-generated method stub
+		if (isTradable()) {
+			super.tradeToBuyer(buyer, seller);
+		}
+		else {
+			System.out.println("this item is not tradable");
+		}
 
 	}
-
+	
+	private double calcArea(double length, double width) {
+		return this.length * this.width;
+	}
+	
 	@Override
 	public double calculateCost() {
-		// TODO Auto-generated method stub
-		return 0;
+		double area = calcArea(this.length, this.width);
+		switch(super.getStyle().name) {
+		case "Renaissance":
+			return area * 7;
+		case "Baroque":
+			return area * 5.5;
+		default:
+			return area * 4.5;
+		}
 	}
 
 }

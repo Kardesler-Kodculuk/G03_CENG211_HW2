@@ -48,14 +48,23 @@ public class Sculpture extends Artwork {
 
 	@Override
 	public boolean isTradable() {
-		// TODO Auto-generated method stub
-		return false;
+		if(this.getStyle().name == "Baroque") {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 
 	@Override
 	public double calculateCost() {
-		// TODO Auto-generated method stub
-		return 0;
+		if(this.material.name == "marble") {
+			return this.weight * 15;
+		}
+		else if(this.material.name == "bronze"){
+			return this.weight * 180;
+		}
+		return -1;
 	}
 
 }
