@@ -25,7 +25,7 @@ public class ArtVaultApp {
 		CSVReader.readFile("CENG211_HW2_ArtVaultData.csv");
 		Vault artVault = new Vault(CSVReader.getArchitects(), CSVReader.getArtists(),
 				CSVReader.getPaintings(), CSVReader.getSculptures(),
-				CSVReader.getArchitectures(), new Seller(), createBuyersList(5));
+				CSVReader.getArchitectures(), new Seller(0, null), createBuyersList(5)); //TO-DO: Fix null to empty.
 
 		ArtVaultAppMenu.mainMenu(artVault);
 	}

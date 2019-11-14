@@ -1,6 +1,6 @@
 package trade;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import art.Artwork;
 
@@ -11,7 +11,7 @@ import art.Artwork;
  */
 public abstract class Merchant {
 	protected double wallet;
-	protected ArrayList<Artwork> privateCollection;
+	protected List<Artwork> privateCollection;
 	
 	/**
 	 * 

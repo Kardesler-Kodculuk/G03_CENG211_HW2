@@ -34,6 +34,11 @@ public class PriceMultiplier implements IComparable<PriceMultiplier>{
 		}
 	}
 	
+	/**
+	 * Parse the value from a painting and return its corresponding object.
+	 * @param value
+	 * @return
+	 */
 	private static PriceMultiplier parsePaintingMultiplier(String value) {
 		switch(value.toLowerCase()) {
 		case "renaissance":
@@ -69,5 +74,10 @@ public class PriceMultiplier implements IComparable<PriceMultiplier>{
 			return new PriceMultiplier(value, -1);
 		}
 		return null;
+	}
+	
+	@Override
+	public String toString() {
+		return this.name;
 	}
 }

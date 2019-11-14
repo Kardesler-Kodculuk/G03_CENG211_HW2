@@ -15,9 +15,18 @@ public abstract class Artwork implements IComparable<Artwork>, ITradable, ISearc
 		this.style = style;
 	}
 	
+	/**
+	 * Get the name of the artwork.
+	 * @return
+	 */
 	public String getName() {
 		return this.name;
 	}
+	
+	/**
+	 * Get the style of the artwork.
+	 * @return
+	 */
 	public PriceMultiplier getStyle() {
 		return this.getStyle();
 	}
@@ -43,7 +52,7 @@ public abstract class Artwork implements IComparable<Artwork>, ITradable, ISearc
 	
 	@Override
 	public String toString() {
-		return this.name;
+		return "\t" + this.name + "\n\t" + this.style.toString();
 	}
 	public int compareTo(Artwork other, String key) throws IllegalArgumentException{
 		switch(key) {
@@ -56,7 +65,11 @@ public abstract class Artwork implements IComparable<Artwork>, ITradable, ISearc
 		}
 	}
 	
+	/**
+	 * Search inside the artwork related to a querry string.
+	 */
 	public boolean search(String querry) {
 		return (this.name.equals(querry) || this.getStyle().name.equals(querry));
 	}
+
 }

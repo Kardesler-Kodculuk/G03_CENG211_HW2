@@ -72,5 +72,16 @@ public class Sculpture extends Artwork {
 		boolean equality = (this.artist.getName().equals(querry) || this.material.name.equals(querry));
 		return equality || super.search(querry);
 	}
+	
+	@Override
+	public String toString() {
+		String stringRepresentation = "Sculpture:\n";
+		stringRepresentation += super.toString();
+		stringRepresentation += "\n\tArtist: " + artist.toString() +
+				"\n\tMaterial: " + material.toString() +
+				"\n\tWeight: " + new Double(weight).toString(); 
+		return stringRepresentation;
+		
+	}
 
 }

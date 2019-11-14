@@ -1,8 +1,22 @@
 package trade;
 
+import java.util.List;
+
 import art.Artwork;
 
 public class Seller extends Merchant {
+
+	
+	/**
+	 * Initiate a Seller object.
+	 * @param wallet
+	 * @param artworks
+	 */
+	public Seller(double wallet, List<Artwork> artworks) {
+		this.wallet = wallet;
+		this.privateCollection = artworks;
+	}
+
 	/**
 	 * Remove an artwork from the collection.
 	 * @param artwork to remove.
