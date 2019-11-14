@@ -68,5 +68,13 @@ public class Vault {
 		}
 		return results;
 	}
+	
+	public void trade(Buyer buyer, Seller seller, Artwork piece) {
+		double price = piece.calculateCost();
+		seller.removeFromCollection(piece);
+		buyer.addToCollection(piece);
+		buyer.removeFromWallet(price);
+		seller.addToWallet(price);
+	}
 
 }
