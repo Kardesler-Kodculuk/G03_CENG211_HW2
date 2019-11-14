@@ -68,6 +68,18 @@ public class Painting extends Artwork {
 
 	}
 	
+	@Override
+	public boolean search(String querry) {
+		boolean result = false;
+		if(super.search(querry)) {
+			result = true;
+		}
+		else if(this.artist.getName().equals(querry)) {
+			result = true;
+		}
+		return result;
+	}
+	
 	private double calcArea(double length, double width) {
 		return this.length * this.width;
 	}

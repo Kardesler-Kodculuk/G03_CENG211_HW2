@@ -2,9 +2,10 @@ package people;
 
 import java.security.InvalidParameterException;
 
+import trade.ISearchable;
 import utility.IComparable;
 
-public abstract class Person implements IComparable<Person>{
+public abstract class Person implements IComparable<Person>, ISearchable{
 	private String name;
 	private int birthDate;
 	private int deathDate;
@@ -28,6 +29,17 @@ public abstract class Person implements IComparable<Person>{
 	}
 	public String getNationality() {
 		return nationality;
+	}
+	
+	@Override
+	public boolean search(String querry) {
+		boolean result = false;
+		if(querry.equals(this.name) || querry.equals(new Integer(birthDate).toString())
+				|| querry.equals(new Integer(deathDate).toString()) 
+				|| querry.equals(this.nationality)) {
+			result = true;
+		}
+		return result;
 	}
 	
 	@Override

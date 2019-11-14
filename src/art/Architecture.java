@@ -42,6 +42,23 @@ public class Architecture extends Artwork {
 		return (this.getStyle().name != "Renaissance");
 	}
 	
+	@Override
+	public boolean search(String querry) {
+		boolean result = false;
+		if(super.search(querry)) {
+			result = true;
+		}
+		else {
+			for(Architect arc : this.architects) {
+				if(arc.getName().equals(querry)) {
+					result = true;
+					break;
+				}
+			}
+		}
+		return result;
+	}
+	
 	/**
 	 * Add an architect to the architects list of the Architecture.
 	 * @param architect

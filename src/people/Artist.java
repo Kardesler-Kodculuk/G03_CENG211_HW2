@@ -16,4 +16,13 @@ public class Artist extends Person {
 	public String toString() {
 		return this.getName();
 	}
+	
+	@Override
+	public boolean search(String querry) {
+		boolean result = false;
+		if(super.search(querry) || periods.toString().equals(querry)) {
+			result = true;
+		}
+		return result;
+	}
 }
