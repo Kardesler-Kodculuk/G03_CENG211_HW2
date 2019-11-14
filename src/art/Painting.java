@@ -80,6 +80,12 @@ public class Painting extends Artwork {
 		return result;
 	}
 	
+	/**
+	 * Calculates the area of the painting
+	 * @param length
+	 * @param width
+	 * @return - area of the painting
+	 */
 	private double calcArea(double length, double width) {
 		return this.length * this.width;
 	}
