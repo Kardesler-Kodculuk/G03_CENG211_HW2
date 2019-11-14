@@ -35,11 +35,11 @@ public class Painting extends Artwork {
 	
 	@Override
 	public int compareTo(Artwork other, String key) {
-		if(key == "name" || key == "style") {
+		if(key.equals("name") || key.equals("style")) {
 			return super.compareTo(other, key);
 		}
 		Painting paint = (Painting) other;
-		if(key == "artist") {
+		if(key.equals("artist")) {
 			return this.artist.getName().compareTo(paint.artist.getName());
 		}
 		else {

@@ -45,15 +45,15 @@ public abstract class Person implements IComparable<Person>, ISearchable{
 	@Override
 	public int compareTo(Person other, String key) {
 		try {
-			if(key == "name") {
+			if(key.equals("name")) {
 				return this.name.compareTo(other.getName());
 			}
-			else if(key == "birthDate") {
+			else if(key.equals("birthDate")) {
 				if(this.birthDate < other.getBirthDate()) {return -1;}
 				else if(this.birthDate > other.getBirthDate()) {return 1;}
 				else {return 0;}
 			}
-			else if(key == "nationality") {
+			else if(key.equals("nationality")) {
 				return this.nationality.compareTo(other.getNationality());
 			}
 			else {
