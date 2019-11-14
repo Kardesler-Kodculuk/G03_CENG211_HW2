@@ -16,16 +16,17 @@ public class ArtVaultApp {
 	private static List<Buyer> createBuyersList(Integer numberOfBuyers) {
 		List<Buyer> buyers = new ArrayList<Buyer>();
 		for (int i = 0; i < numberOfBuyers; i++) {
-			buyers.set(i, new Buyer());
+			buyers.add(new Buyer());
 		}
 		return buyers;
 	}
+	
 	public static void main(String[] args) {
 		CSVReader.readFile("CENG211_HW2_ArtVaultData.csv");
 		Vault artVault = new Vault(CSVReader.getArchitects(), CSVReader.getArtists(),
 				CSVReader.getPaintings(), CSVReader.getSculptures(),
 				CSVReader.getArchitectures(), new Seller(), createBuyersList(5));
 
+		ArtVaultAppMenu.mainMenu(artVault);
 	}
-
 }

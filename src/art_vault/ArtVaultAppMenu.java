@@ -5,13 +5,14 @@ import java.util.Scanner;
 import art.Artwork;
 import people.Person;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import trade.Vault;
 import utility.IComparable;
+import utility.ListHelpers;
 
-public class ArtVaultAppMenu {
-	private static Scanner userIO;
+public final class ArtVaultAppMenu {
 	private static final String mainMenuPrompt = "1) Print the lists\n"
 			+ "2) Search the Vault\n"
 			+ "3) Trade\n"
@@ -27,37 +28,59 @@ public class ArtVaultAppMenu {
 			+ "3) Sort by style\n"
 			+ "0) Exit";
 	
-	private static void printTheListSortedWithMethod(Vault vault, Object[] list, String method) {
-		;
+	private static void printTheListSortedWithMethod(Vault vault, IComparable[] arr, String method) {
+		List<IComparable> list = new ArrayList<IComparable>();
+		for (IComparable comparable : arr) {
+			list.add(comparable);
+		}
+		ListHelpers.sort(list, method);
+		System.out.println(list);
 	}
 	
-	private static void printTheListSorted(Vault vault, IComparable[] arr) {
+	private static void printTheListSorted(Scanner userIO, Vault vault, IComparable[] arr) {
 		System.out.println(sortingMethodPrompt);
-		switch(userIO.nextLine()) {
+		String prompt = userIO.next();
+		switch(prompt) {
 		case "1":
-			
+			printTheListSortedWithMethod(vault, arr, "name");
+			break;
+		case "2":
+			printTheListSortedWithMethod(vault, arr, "artist");
+			break;
+		case "3":
+			printTheListSortedWithMethod(vault, arr, "style");
+			break;
+		case "0":
+			System.exit(0);
+			break;
+		default:
+			System.out.println("Illegal argument entered.");
+			break;
 		}
 	}
 	
-	private static void printTheLists(Vault vault) {
+	private static void printSearch(Scanner userIO, Vault vault, String querry) {}
+	
+	private static void printTheLists(Scanner userIO, Vault vault) {
 		System.out.println(chooseListPrompt);
 		String key = "";
 		IComparable[] arr = new IComparable[5];
-		switch (userIO.nextLine()) {
+		String prompt = userIO.next();
+		switch (prompt) {
 		case "1":
-			printTheListSorted(vault, vault.getArtists().toArray(arr));
+			printTheListSorted(userIO, vault, vault.getArtists().toArray(arr));
 			break;
 		case "2":
-			key = "architect";
+			printTheListSorted(userIO, vault, vault.getArchitects().toArray(arr));
 			break;
 		case "3":
-			key = "painting";
+			printTheListSorted(userIO, vault, vault.getPaintings().toArray(arr));
 			break;
 		case "4":
-			key = "sculpture";
+			printTheListSorted(userIO, vault, vault.getSculptures().toArray(arr));
 			break;
 		case "5":
-			key = "architecture";
+			printTheListSorted(userIO, vault, vault.getArchitectures().toArray(arr));
 			break;
 		case "0":
 			System.exit(0);
@@ -69,14 +92,15 @@ public class ArtVaultAppMenu {
 	}
 	
 	public static void mainMenu(Vault mainVault) {
-		userIO = new Scanner(System.in);
+		Scanner userIO = new Scanner(System.in);
 		String userInput;
 		do {
 			System.out.println(mainMenuPrompt);
 			userInput = userIO.next();
 			switch (userInput) {
 			case "1":
-				printTheLists(mainVault);
+				printTheLists(userIO, mainVault);
+				break;
 			case "2":
 				break;
 			case "3":

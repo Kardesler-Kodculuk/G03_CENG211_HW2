@@ -1,6 +1,9 @@
 package utility;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import trade.ISearchable;
 
 public class ListHelpers {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -23,5 +26,11 @@ public class ListHelpers {
 		IComparable element2 = list.remove(i2);
 		list.add(i1, element2);
 		list.add(i2, element1);
+	}
+	
+	public static void extendList(List<ISearchable> resultList, ISearchable[] array) {
+		for (ISearchable searchable : array) {
+			resultList.add(searchable);
+		}
 	}
 }

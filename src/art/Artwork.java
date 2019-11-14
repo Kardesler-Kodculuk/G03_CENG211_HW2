@@ -1,11 +1,12 @@
 package art;
 
 import trade.Buyer;
+import trade.ISearchable;
 import trade.ITradable;
 import trade.Seller;
 import utility.IComparable;
 
-public abstract class Artwork implements IComparable<Artwork>, ITradable {
+public abstract class Artwork implements IComparable<Artwork>, ITradable, ISearchable {
 	private String name;
 	private PriceMultiplier style;
 	
@@ -53,5 +54,9 @@ public abstract class Artwork implements IComparable<Artwork>, ITradable {
 			default:
 				throw new IllegalArgumentException();
 		}
+	}
+	
+	public boolean search(String querry) {
+		return (this.name.equals(querry) || this.getStyle().name.equals(querry));
 	}
 }

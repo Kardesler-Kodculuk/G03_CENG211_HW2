@@ -66,5 +66,11 @@ public class Sculpture extends Artwork {
 		}
 		return -1;
 	}
+	
+	@Override
+	public boolean search(String querry) {
+		boolean equality = (this.artist.getName().equals(querry) || this.material.name.equals(querry));
+		return equality || super.search(querry);
+	}
 
 }

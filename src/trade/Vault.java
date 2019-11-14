@@ -1,12 +1,14 @@
 package trade;
 
+import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Arrays;
 import art.*;
 import people.*;
 import utility.IComparable;
+import utility.ListHelpers;
 
-public class Vault implements ISearchable {
+public class Vault {
 	
 	private List<Architect> architects;
 	private List<Artist> artists;
@@ -50,10 +52,21 @@ public class Vault implements ISearchable {
 		return buyers;
 	}
 
-	@Override
-	public boolean search(String type, String querry) {
-		// TODO Auto-generated method stub
-		return false;
+	public List<String> search(String querry) {
+		List<String> results = new ArrayList<String>();
+		ISearchable[] arr = new ISearchable[0];
+		List<ISearchable> searchIn = new ArrayList<ISearchable>();
+		ListHelpers.extendList(searchIn, artists.toArray(arr.clone()));
+		ListHelpers.extendList(searchIn, architects.toArray(arr.clone()));
+		ListHelpers.extendList(searchIn, paintings.toArray(arr.clone()));
+		ListHelpers.extendList(searchIn, architectures.toArray(arr.clone()));
+		ListHelpers.extendList(searchIn, sculptures.toArray(arr.clone()));
+		for (ISearchable searchable : searchIn) {
+			if (searchable.search(querry)) {
+				results.add(searchable.toString());
+			}
+		}
+		return results;
 	}
 
 }
