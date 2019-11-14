@@ -69,6 +69,12 @@ public class Vault {
 		return results;
 	}
 	
+	/**
+	 * Performs the trade operation between buyer and seller
+	 * @param buyer - buyer object 
+	 * @param seller - seller object
+	 * @param piece - an artwork
+	 */
 	public void trade(Buyer buyer, Seller seller, Artwork piece) {
 		double price = piece.calculateCost();
 		seller.removeFromCollection(piece);
