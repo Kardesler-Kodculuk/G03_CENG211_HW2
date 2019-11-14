@@ -105,7 +105,7 @@ public class Painting extends Artwork {
 	
 	@Override
 	public String toString() {
-		String str = "Architecture: ";
+		String str = "Painting: ";
 		str += "\n" + super.toString();
 		str += "\n\tLength: " + this.length
 				+ "\n\tWidth: " + this.width 
