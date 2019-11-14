@@ -7,4 +7,14 @@ public class Architect extends Person {
 		super(name, birthDate, deathDate, nationality);
 	}
 	
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
+	
 }
