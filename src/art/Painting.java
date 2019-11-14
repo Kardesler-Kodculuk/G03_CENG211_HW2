@@ -102,5 +102,20 @@ public class Painting extends Artwork {
 			return area * 4.5;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		String str = "Architecture: ";
+		str += "\n" + super.toString();
+		str += "\n\tLength: " + this.length
+				+ "\n\tWidth: " + this.width 
+				+ "\n\tArtist: " + this.artist.toString();
+		return str;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
 
 }
