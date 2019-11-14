@@ -68,4 +68,19 @@ public abstract class Person implements IComparable<Person>, ISearchable{
 			throw e;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		String str = "";
+		str += "\tBirth Date: " + this.birthDate 
+				+ "\n\tDeath Date: " + this.deathDate 
+				+ "\n\tName: " + this.name 
+				+ "\n\tNationality: " + this.nationality;
+		return str;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return this.name.equals(obj);
+	}
 }
