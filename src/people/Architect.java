@@ -1,6 +1,5 @@
 package people;
 
-import utility.Date;
 
 public class Architect extends Person {
 

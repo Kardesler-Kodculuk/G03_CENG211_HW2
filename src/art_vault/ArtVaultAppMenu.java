@@ -59,7 +59,9 @@ public final class ArtVaultAppMenu {
 		}
 	}
 	
-	private static void printSearch(Scanner userIO, Vault vault, String querry) {}
+	private static void printSearch(Scanner userIO, Vault vault, String querry) {
+		vault.search(querry);
+	}
 	
 	private static void printTheLists(Scanner userIO, Vault vault) {
 		System.out.println(chooseListPrompt);
