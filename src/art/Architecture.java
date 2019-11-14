@@ -79,4 +79,18 @@ public class Architecture extends Artwork {
 		return height;
 	}
 
+	@Override
+	public String toString() {
+		String str = "Architecture: ";
+		str += "\n" + super.toString();
+		str += "\n\tLength: " + this.length + "\n\tWidth: " + this.width 
+				+ "\n\tHeight: " + this.height + "\n\tVolume: " + this.volume;
+		return str;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
+	
 }
