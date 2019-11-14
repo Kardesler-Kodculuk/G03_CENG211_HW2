@@ -59,8 +59,12 @@ public final class ArtVaultAppMenu {
 		}
 	}
 	
-	private static void printSearch(Scanner userIO, Vault vault, String querry) {
-		vault.search(querry);
+	private static void printSearch(Scanner userIO, Vault vault) {
+		String querry = userIO.next();
+		List<String> results = vault.search(querry);
+		for (String result : results) {
+			System.out.println(result);
+		}
 	}
 	
 	private static void printTheLists(Scanner userIO, Vault vault) {
@@ -104,6 +108,7 @@ public final class ArtVaultAppMenu {
 				printTheLists(userIO, mainVault);
 				break;
 			case "2":
+				printSearch(userIO, mainVault);
 				break;
 			case "3":
 				break;
