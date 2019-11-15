@@ -27,6 +27,12 @@ public class Vault {
 		this.architectures = architectures;
 		this.seller = seller;
 		this.buyers = buyers;
+		List<ISearchable> artworks = new ArrayList<ISearchable>();
+		Artwork[] artworkGuide = new Artwork[0];
+		ListHelpers.extendList(artworks, paintings.toArray(artworkGuide));
+		ListHelpers.extendList(artworks, architectures.toArray(artworkGuide));
+		ListHelpers.extendList(artworks, sculptures.toArray(artworkGuide));
+		seller.extendCollection(artworks.toArray(artworkGuide));
 	}
 
 	public List<Architect> getArchitects() {

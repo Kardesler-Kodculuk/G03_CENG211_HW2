@@ -33,4 +33,10 @@ public class Seller extends Merchant {
 	public void addToWallet(double amount) {
 		this.wallet += amount;
 	}
+	
+	public void extendCollection(Artwork[] extensionArray) {
+		for (Artwork artwork : extensionArray) {
+			this.privateCollection.add(artwork);
+		}
+	}
 }
