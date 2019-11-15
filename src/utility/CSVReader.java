@@ -112,7 +112,10 @@ public final class CSVReader {
 	private static void createArchitecture(String[] args) {
 		Architecture arch = new Architecture(args[1], PriceMultiplier.decideMultiplier(args[2], "architecture"), Double.parseDouble(args[3]), Double.parseDouble(args[4]), Double.parseDouble(args[5]));
 		for (int i = 5; i < args.length; i++) {
-			arch.addArchitect(findArchitect(args[i]));
+			Architect arc = findArchitect(args[i]);
+			if (arc != null) {
+				arch.addArchitect(arc);
+			}
 		}
 		architectures.add(arch);
 	}

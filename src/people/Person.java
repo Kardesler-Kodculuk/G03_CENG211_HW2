@@ -46,7 +46,7 @@ public abstract class Person implements IComparable<Person>, ISearchable{
 	public int compareTo(Person other, String key) {
 		try {
 			if(key.equals("name")) {
-				return this.name.compareTo(other.getName());
+				return this.name.toLowerCase().compareTo(other.getName().toLowerCase());
 			}
 			else if(key.equals("birthDate")) {
 				if(this.birthDate < other.getBirthDate()) {return -1;}

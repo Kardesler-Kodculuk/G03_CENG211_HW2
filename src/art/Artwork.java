@@ -28,7 +28,7 @@ public abstract class Artwork implements IComparable<Artwork>, ITradable, ISearc
 	 * @return
 	 */
 	public PriceMultiplier getStyle() {
-		return this.getStyle();
+		return this.style;
 	}
 	/**
 	 * Accessed from Vault, this trades this artifact to a buyer from a seller.
