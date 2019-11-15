@@ -126,6 +126,7 @@ public final class ArtVaultAppMenu {
 				printSearch(mainVault);
 				break;
 			case "3":
+				trade(mainVault);
 				break;
 			case "0":
 				break;

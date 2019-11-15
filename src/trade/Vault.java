@@ -2,6 +2,7 @@ package trade;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Arrays;
 import art.*;
 import people.*;
@@ -75,6 +76,45 @@ public class Vault {
 		return results;
 	}
 	
+	private int genRandInt(int bound) {
+		Random ran = new Random();
+		int result = ran.nextInt(bound);
+		return result;
+	}
+	
+	private Artwork randomTradableArtwork() {
+		int len = seller.privateCollection.size();
+		Artwork art = seller.privateCollection.get(genRandInt(len));
+		boolean isTradable = art.isTradable();
+		while(!isTradable) {
+			art = seller.privateCollection.get(genRandInt(len));
+			isTradable = art.isTradable();
+		}
+		return art;
+	}
+	
+	private String performOneTrade(Buyer buyer, Seller seller) {
+		Artwork art = randomTradableArtwork();
+		art.tradeToBuyer(buyer, seller);
+		String output = art.toString();
+		return output;
+	}
+	
+	private String calculateBalances() {
+		String output = "";
+		String sellerMoney = String.format("%.2f", seller.wallet) + " " + "TL";
+		output += "Seller's money: " + sellerMoney + "\n";
+		String buyerMoney;
+		Buyer buyer;
+		for(int i = 0; i < 4; i++) {
+			buyer = buyers.get(i);
+			buyerMoney = String.format("%.2f", buyer.wallet) + " " + "TL";
+			output += "Buyer" + (i+1) + "'s money: " + buyerMoney + " \n";
+		}
+		return output;
+		
+	}
+	
 	/**
 	 * Performs the trade operation between buyer and seller
 	 * @param buyer - buyer object 
@@ -82,7 +122,18 @@ public class Vault {
 	 * @param piece - an artwork
 	 */
 	public String trade() {
-		return "";
+		String output = "";
+		output += calculateBalances();
+		output += "\nTrade started: ";
+		for(int i = 0; i < 4; i++) {
+			Buyer buyer = buyers.get(i);
+			String saledArt = performOneTrade(buyer, seller);
+			output += "\nBuyer" + (i+1) + "bought:\n\n"
+					+ saledArt;
+		}
+		output += "\nTrade completed: ";
+		output += calculateBalances();
+		return output;
 	}
 
 }
