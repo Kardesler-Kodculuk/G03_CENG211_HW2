@@ -81,12 +81,8 @@ public class Vault {
 	 * @param seller - seller object
 	 * @param piece - an artwork
 	 */
-	public void trade(Buyer buyer, Seller seller, Artwork piece) {
-		double price = piece.calculateCost();
-		seller.removeFromCollection(piece);
-		buyer.addToCollection(piece);
-		buyer.removeFromWallet(price);
-		seller.addToWallet(price);
+	public String trade() {
+		return "";
 	}
 
 }
