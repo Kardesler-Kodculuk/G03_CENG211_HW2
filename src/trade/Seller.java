@@ -1,5 +1,6 @@
 package trade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import art.Artwork;
@@ -14,9 +15,15 @@ public class Seller extends Merchant {
 	 */
 	public Seller(double wallet, List<Artwork> artworks) {
 		this.wallet = wallet;
+		if (artworks == null) {
+			artworks = new ArrayList<Artwork>();
+		}
 		this.privateCollection = artworks;
 	}
 
+	public Seller() {
+		this(0, null);
+	}
 	/**
 	 * Remove an artwork from the collection.
 	 * @param artwork to remove.
