@@ -82,12 +82,21 @@ public class Vault {
 		return results;
 	}
 	
+	/**
+	 * Generates random integer between 0 (inclusive) and given bound (exclusive)
+	 * @param bound - upper limit as a integer
+	 * @return random integer
+	 */
 	private int genRandInt(int bound) {
 		Random ran = new Random();
 		int result = ran.nextInt(bound);
 		return result;
 	}
 	
+	/**
+	 * It picks random tradable artwork from collection
+	 * @return An artwork object which is tradable
+	 */
 	private Artwork randomTradableArtwork() {
 		int len = seller.getCollection().size();
 		Artwork art = seller.getCollection().get(genRandInt(len));
@@ -99,6 +108,12 @@ public class Vault {
 		return art;
 	}
 	
+	/**
+	 * It performs one random buyer between buyer and seller
+	 * @param buyer - A buyer object
+	 * @param seller - A seller object
+	 * @return sale info as a string
+	 */
 	private String performOneTrade(Buyer buyer, Seller seller) {
 		Artwork art = randomTradableArtwork();
 		art.tradeToBuyer(buyer, seller);
@@ -106,6 +121,10 @@ public class Vault {
 		return output;
 	}
 	
+	/**
+	 * It calculates all the merchants' balance
+	 * @return All balances of the merchants as a String object
+	 */
 	private String calculateBalances() {
 		String output = "";
 		String sellerMoney = String.format("%.2f", seller.getWalletValue()) + " " + "TL";
@@ -122,7 +141,8 @@ public class Vault {
 	}
 	
 	/**
-	 * Performs the trade operations between buyers and seller
+	 * Performs random trade operations between buyers and seller
+	 * @return String - info about sales (initial moneys of the merchants, sales, last moneys)
 	 */
 	public String trade() {
 		initialiseSellersBuyers();
