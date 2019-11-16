@@ -11,10 +11,15 @@ import art.Artwork;
  *
  */
 public abstract class Merchant {
-	private double wallet;
+	private double wallet; // In liras.
 	private List<Artwork> privateCollection;
-	private final double initialWallet;
+	private final double initialWallet; // To reset if needed.
 	
+	/**
+	 * Super for the insantiation of the subclasses of a Merchant class.
+	 * @param wallet value of money in wallet.
+	 * @param privateCollection collection of the merchant.
+	 */
 	public Merchant(double wallet, List<Artwork> privateCollection) {
 		this.wallet = wallet;
 		this.initialWallet = wallet;

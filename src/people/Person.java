@@ -48,7 +48,7 @@ public abstract class Person implements IComparable<Person>, ISearchable{
 			if(key.equals("name")) {
 				return this.name.toLowerCase().compareTo(other.getName().toLowerCase());
 			}
-			else if(key.equals("birthDate")) {
+			else if(key.equals("birthday")) {
 				if(this.birthDate < other.getBirthDate()) {return -1;}
 				else if(this.birthDate > other.getBirthDate()) {return 1;}
 				else {return 0;}
@@ -82,5 +82,9 @@ public abstract class Person implements IComparable<Person>, ISearchable{
 	@Override
 	public boolean equals(Object obj) {
 		return this.name.equals(obj);
+	}
+	
+	public String toStringLite() {
+		return this.name;
 	}
 }

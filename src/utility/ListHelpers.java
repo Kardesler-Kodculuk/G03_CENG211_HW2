@@ -41,9 +41,13 @@ public class ListHelpers {
 		list.set(i2, temp);
 	}
 	
-	// TODO comment this
+	/**
+	 * Extend the list with the contents of an array
+	 * @param resultList List that shall be extended
+	 * @param array to extend the list by.
+	 */
 	public static void extendList(List<ISearchable> resultList, ISearchable[] array) {
-		for (ISearchable searchable : array) {
+		for (ISearchable searchable : array) { // An array to circumnavigate the List's casting problems
 			resultList.add(searchable);
 		}
 	}

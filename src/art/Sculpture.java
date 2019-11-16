@@ -39,7 +39,7 @@ public class Sculpture extends Artwork {
 			return this.artist.getName().compareTo(scu.artist.getName());
 		}
 		else if(key.equals("material")) {
-			return this.material.name.compareTo(scu.artist.getName());
+			return this.material.getName().compareTo(scu.artist.getName());
 		}
 		else {
 			throw new IllegalArgumentException();
@@ -48,7 +48,7 @@ public class Sculpture extends Artwork {
 
 	@Override
 	public boolean isTradable() {
-		if(this.getStyle().name.equals("Baroque")) {
+		if(this.getStyle().getName().equals("Baroque")) {
 			return false;
 		}
 		else {
@@ -58,10 +58,10 @@ public class Sculpture extends Artwork {
 
 	@Override
 	public double calculateCost() {
-		if(this.material.name.equals("Marble")) {
+		if(this.material.getName().equals("Marble")) {
 			return this.weight * 15;
 		}
-		else if(this.material.name.equals("Bronze")){
+		else if(this.material.getName().equals("Bronze")){
 			return this.weight * 180;
 		}
 		return -1;
@@ -76,7 +76,7 @@ public class Sculpture extends Artwork {
 	
 	@Override
 	public boolean search(String querry) {
-		boolean equality = (this.artist.getName().equals(querry) || this.material.name.equals(querry));
+		boolean equality = (this.artist.getName().equals(querry) || this.material.getName().equals(querry));
 		return equality || super.search(querry);
 	}
 	

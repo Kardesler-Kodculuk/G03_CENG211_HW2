@@ -2,9 +2,6 @@ package art_vault;
 
 import java.util.Scanner;
 
-import art.Artwork;
-import people.Person;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,15 +24,29 @@ public final class ArtVaultAppMenu {
 	private static final String askForSearch = "Please enter your search querry: ";
 	private static final String[][] searchMethods = {{"name", "birthday", "nationality"}, {"name", "birthday", "nationality"}, {"name", "style", "artist"},
 			{"name", "style", "artist", "matherial"}, {"name", "style"}};
+	
+	/**
+	 * Take the input from the user.
+	 * @param querry - What question to ask to user.
+	 * @return The user input.
+	 */
 	private static String input(String querry) {
 		System.out.println(querry);
-		String output = userIO.nextLine();
+		String output = userIO.nextLine(); // Consume the End of Line operator.
 		if (output.endsWith("\n")){
 			output = output.substring(0, output.length() - 1);
 		}
 		return output;
 		
 	}
+	
+	/**
+	 * Print the lists sorted via a certain method.
+	 * @param vault Vault to search in.
+	 * @param arr Array to hold the comparables.
+	 * @param method Method to sort by.
+	 */
+	@SuppressWarnings("rawtypes")
 	private static void printTheListSortedWithMethod(Vault vault, IComparable[] arr, String method) {
 		List<IComparable> list = new ArrayList<IComparable>();
 		for (IComparable comparable : arr) {
@@ -47,7 +58,13 @@ public final class ArtVaultAppMenu {
 		}
 	}
 	
-	private static void printTheListSorted(Vault vault, IComparable[] arr, String[] options) {
+	/**
+	 * Print the list sorted, ask for method to userç
+	 * @param vault Vault to search in
+	 * @param arr Array to put them in.
+	 * @param options Options for which methods are available per object class.
+	 */
+	private static void printTheListSorted(Vault vault, @SuppressWarnings("rawtypes") IComparable[] arr, String[] options) {
 		String querry = "";
 		int index = 1;
 		for (String option : options) {
@@ -68,6 +85,10 @@ public final class ArtVaultAppMenu {
 		}
 	}
 
+	/**
+	 * Search for a querry and print the results
+	 * @param vault Vault to search in.
+	 */
 	private static void printSearch(Vault vault) {
 		String querry = input(askForSearch);
 		List<String> results = vault.search(querry);
@@ -75,8 +96,13 @@ public final class ArtVaultAppMenu {
 			System.out.println(result);
 		}
 	}
+	
+	/**
+	 * Print the lists.
+	 * @param vault Vault to search in.
+	 */
+	@SuppressWarnings("rawtypes")
 	private static void printTheLists(Vault vault) {
-		String key = "";
 		IComparable[] guideArray = new IComparable[0];
 		IComparable[] comparableArray = new IComparable[0];
 		String prompt = input(chooseListPrompt);
@@ -105,15 +131,28 @@ public final class ArtVaultAppMenu {
 			invalid = true;
 			break;
 		}
-		if (!invalid)
-			printTheListSorted(vault, comparableArray, searchMethods[Integer.parseInt(prompt) -1]);
+		if (!invalid) {
+			try {
+				printTheListSorted(vault, comparableArray, searchMethods[Integer.parseInt(prompt) -1]);
+			} catch (NumberFormatException e) {
+				System.out.println("Please enter a number");
+			}
+		}
 	}
 	
+	/**
+	 * Initiate a trade, reset each turn.
+	 * @param mainVault Vault to trade by.
+	 */
 	private static void trade(Vault mainVault) {
 		String tradeResult = mainVault.trade();
 		System.out.println(tradeResult);
 	}
 
+	/**
+	 * Entrance to main menu.
+	 * @param mainVault Vault to operate on.
+	 */
 	public static void mainMenu(Vault mainVault) {
 		String userInput;
 		do {

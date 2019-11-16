@@ -3,24 +3,25 @@ package art;
 import utility.IComparable;
 
 /**
- * Material class represents the material an object is made of.
- *
+ * Anything that affect's an artwork's price.
  */
 public class PriceMultiplier implements IComparable<PriceMultiplier>{
-	public final double price;
-	public final String name;
+	private final double price;
+	private final String name;
 
+	/**
+	 * Initialise a priceModifier.
+	 * @param name Name of the priceModifier.
+	 * @param price Price of the price modifier.
+	 */
 	public PriceMultiplier(String name, double price) {
-		/**
-		 * Define a material.
-		 */
 		this.name = name;
 		this.price = price;
 	}
 
 	@Override
 	public int compareTo(PriceMultiplier other, String key) {
-		return this.name.compareTo(other.name);
+		return this.getName().compareTo(other.getName());
 	}
 	
 	private static PriceMultiplier parseArchitectureMultiplier(String value) {
@@ -78,6 +79,22 @@ public class PriceMultiplier implements IComparable<PriceMultiplier>{
 	
 	@Override
 	public String toString() {
-		return this.name;
+		return this.getName();
+	}
+
+	/**
+	 * Get the name of the priceModifier
+	 * @return the name of the priceModifier
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Get the price of the priceModifier.
+	 * @return the name of the priceModifier.
+	 */
+	public double getPrice() {
+		return price;
 	}
 }

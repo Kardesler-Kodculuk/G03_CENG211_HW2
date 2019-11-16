@@ -49,7 +49,7 @@ public class Painting extends Artwork {
 
 	@Override
 	public boolean isTradable() {
-		if (this.getStyle().name == "Gothic") {
+		if (this.getStyle().getName() == "Gothic") {
 			return false;
 		}
 		else {
@@ -93,7 +93,7 @@ public class Painting extends Artwork {
 	@Override
 	public double calculateCost() {
 		double area = calcArea();
-		switch(super.getStyle().name) {
+		switch(super.getStyle().getName()) {
 		case "Renaissance":
 			return area * 7;
 		case "Baroque":
@@ -109,7 +109,7 @@ public class Painting extends Artwork {
 		str += "\n" + super.toString();
 		str += "\n\tLength: " + this.length
 				+ "\n\tWidth: " + this.width 
-				+ "\n\tArtist: " + this.artist.toString();
+				+ "\n\tArtist: " + this.artist.toStringLite();
 		return str;
 	}
 	

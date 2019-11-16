@@ -3,10 +3,8 @@ package trade;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Arrays;
 import art.*;
 import people.*;
-import utility.IComparable;
 import utility.ListHelpers;
 
 public class Vault {

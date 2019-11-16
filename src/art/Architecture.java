@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import people.Architect;
 
 
+/**
+ * Representation of an architecture.
+ */
 public class Architecture extends Artwork {
 	
 	private final double length;
@@ -13,6 +16,14 @@ public class Architecture extends Artwork {
 	private final double volume;
 	private ArrayList<Architect> architects;
 	
+	/**
+	 * Initialise an architecture object.
+	 * @param name of the architecture.
+	 * @param style the architecture was built in.
+	 * @param length of the architecture.
+	 * @param width of the architecture.
+	 * @param height of the architecture.
+	 */
 	public Architecture(String name, PriceMultiplier style, double length, double width, double height) {
 		super(name, style);
 		this.length = length;
@@ -34,12 +45,12 @@ public class Architecture extends Artwork {
 
 	@Override
 	public double calculateCost() {
-		return this.volume * this.getStyle().price;
+		return this.volume * this.getStyle().getPrice();
 	}
 
 	@Override
 	public boolean isTradable() {
-		return (this.getStyle().name != "Renaissance");
+		return (this.getStyle().getName() != "Renaissance");
 	}
 	
 	@Override
@@ -89,10 +100,14 @@ public class Architecture extends Artwork {
 	@Override
 	public String toString() {
 		String str = "Architecture: ";
+		String architects = "\tArchitects: ";
 		str += "\n" + super.toString();
 		str += "\n\tLength: " + this.length + "\n\tWidth: " + this.width 
 				+ "\n\tHeight: " + this.height + "\n\tVolume: " + this.volume;
-		return str;
+		for (Architect arc : this.architects) {
+			architects += arc.toStringLite() + ", ";
+		}
+		return str + "\n" + architects.substring(0, architects.length() - 2);
 	}
 
 	@Override

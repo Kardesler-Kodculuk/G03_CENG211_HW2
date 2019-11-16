@@ -54,6 +54,7 @@ public abstract class Artwork implements IComparable<Artwork>, ITradable, ISearc
 	public String toString() {
 		return "\t" + this.name + "\n\t" + this.style.toString();
 	}
+
 	public int compareTo(Artwork other, String key) throws IllegalArgumentException{
 		switch(key) {
 		case "name":
@@ -69,7 +70,7 @@ public abstract class Artwork implements IComparable<Artwork>, ITradable, ISearc
 	 * Search inside the artwork related to a querry string.
 	 */
 	public boolean search(String querry) {
-		return (this.name.equals(querry) || this.getStyle().name.equals(querry));
+		return (this.name.equals(querry) || this.getStyle().getName().equals(querry));
 	}
 
 	public String toBill() {
