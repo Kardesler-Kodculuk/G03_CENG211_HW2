@@ -1,8 +1,20 @@
 package trade;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import art.Artwork;
 
 public class Buyer extends Merchant {
+	
+	/**
+	 * Initiate a Buyer object.
+	 * @param wallet
+	 */
+	public Buyer(double wallet) {
+		this.wallet = wallet;
+		this.privateCollection = new ArrayList<Artwork>();
+	}
 	
 	/**
 	 * Add artwork to collection

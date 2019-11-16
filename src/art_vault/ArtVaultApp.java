@@ -16,7 +16,7 @@ public class ArtVaultApp {
 	private static List<Buyer> createBuyersList(Integer numberOfBuyers) {
 		List<Buyer> buyers = new ArrayList<Buyer>();
 		for (int i = 0; i < numberOfBuyers; i++) {
-			buyers.add(new Buyer());
+			buyers.add(new Buyer(5000000.00));
 		}
 		return buyers;
 	}
