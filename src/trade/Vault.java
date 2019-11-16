@@ -28,12 +28,7 @@ public class Vault {
 		this.architectures = architectures;
 		this.seller = seller;
 		this.buyers = buyers;
-		List<ISearchable> artworks = new ArrayList<ISearchable>();
-		Artwork[] artworkGuide = new Artwork[0];
-		ListHelpers.extendList(artworks, paintings.toArray(artworkGuide));
-		ListHelpers.extendList(artworks, architectures.toArray(artworkGuide));
-		ListHelpers.extendList(artworks, sculptures.toArray(artworkGuide));
-		seller.extendCollection(artworks.toArray(artworkGuide));
+		initialiseSellersBuyers();
 	}
 
 	public List<Architect> getArchitects() {
@@ -59,6 +54,19 @@ public class Vault {
 		return buyers;
 	}
 
+	private void initialiseSellersBuyers() {
+		List<ISearchable> artworks = new ArrayList<ISearchable>();
+		Artwork[] artworkGuide = new Artwork[0];
+		ListHelpers.extendList(artworks, paintings.toArray(artworkGuide));
+		ListHelpers.extendList(artworks, architectures.toArray(artworkGuide));
+		ListHelpers.extendList(artworks, sculptures.toArray(artworkGuide));
+		seller.reset();
+		seller.extendCollection(artworks.toArray(artworkGuide));
+		for (Buyer buyer : buyers) {
+			buyer.reset();
+		}
+	}
+	
 	public List<String> search(String querry) {
 		List<String> results = new ArrayList<String>();
 		ISearchable[] arr = new ISearchable[0];
@@ -83,11 +91,11 @@ public class Vault {
 	}
 	
 	private Artwork randomTradableArtwork() {
-		int len = seller.privateCollection.size();
-		Artwork art = seller.privateCollection.get(genRandInt(len));
+		int len = seller.getCollection().size();
+		Artwork art = seller.getCollection().get(genRandInt(len));
 		boolean isTradable = art.isTradable();
 		while(!isTradable) {
-			art = seller.privateCollection.get(genRandInt(len));
+			art = seller.getCollection().get(genRandInt(len));
 			isTradable = art.isTradable();
 		}
 		return art;
@@ -102,13 +110,13 @@ public class Vault {
 	
 	private String calculateBalances() {
 		String output = "";
-		String sellerMoney = String.format("%.2f", seller.wallet) + " " + "TL";
+		String sellerMoney = String.format("%.2f", seller.getWalletValue()) + " " + "TL";
 		output += "Seller's money: " + sellerMoney + "\n";
 		String buyerMoney;
 		Buyer buyer;
 		for(int i = 0; i < 4; i++) {
 			buyer = buyers.get(i);
-			buyerMoney = String.format("%.2f", buyer.wallet) + " " + "TL";
+			buyerMoney = String.format("%.2f", buyer.getWalletValue()) + " " + "TL";
 			output += "Buyer" + (i+1) + "'s money: " + buyerMoney + " \n";
 		}
 		return output;
@@ -119,6 +127,7 @@ public class Vault {
 	 * Performs the trade operations between buyers and seller
 	 */
 	public String trade() {
+		initialiseSellersBuyers();
 		String output = "";
 		output += calculateBalances();
 		output += "\nTrade started:";

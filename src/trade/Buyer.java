@@ -1,7 +1,6 @@
 package trade;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import art.Artwork;
 
@@ -12,8 +11,7 @@ public class Buyer extends Merchant {
 	 * @param wallet
 	 */
 	public Buyer(double wallet) {
-		this.wallet = wallet;
-		this.privateCollection = new ArrayList<Artwork>();
+		super(wallet, new ArrayList<Artwork>());
 	}
 	
 	/**
@@ -21,7 +19,7 @@ public class Buyer extends Merchant {
 	 * @param artwork to add.
 	 */
 	public void addToCollection(Artwork artwork) {
-		this.privateCollection.add(artwork);
+		getCollection().add(artwork);
 	}
 	
 	/**
@@ -30,7 +28,7 @@ public class Buyer extends Merchant {
 	 * @throws AssertionError Wallet balance must stay positive.
 	 */
 	public void removeFromWallet(double amount) throws AssertionError {
-		assert (this.wallet >= amount);
-		this.wallet -= amount;
+		assert (getWalletValue() >= amount);
+		setWallet(getWalletValue() - amount);
 	}
 }

@@ -112,8 +112,8 @@ public final class ArtVaultAppMenu {
 	private static void trade(Vault mainVault) {
 		String tradeResult = mainVault.trade();
 		System.out.println(tradeResult);
-
 	}
+
 	public static void mainMenu(Vault mainVault) {
 		String userInput;
 		do {

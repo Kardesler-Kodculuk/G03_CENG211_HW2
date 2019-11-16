@@ -1,6 +1,5 @@
 package trade;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import art.Artwork;
@@ -14,11 +13,7 @@ public class Seller extends Merchant {
 	 * @param artworks
 	 */
 	public Seller(double wallet, List<Artwork> artworks) {
-		this.wallet = wallet;
-		if (artworks == null) {
-			artworks = new ArrayList<Artwork>();
-		}
-		this.privateCollection = artworks;
+		super(wallet, artworks);
 	}
 
 	public Seller() {
@@ -29,8 +24,8 @@ public class Seller extends Merchant {
 	 * @param artwork to remove.
 	 */
 	public void removeFromCollection(Artwork artwork) {
-		if (this.privateCollection.contains(artwork))
-			this.privateCollection.remove(artwork);
+		if (getCollection().contains(artwork))
+			getCollection().remove(artwork);
 	}
 	
 	/**
@@ -38,12 +33,16 @@ public class Seller extends Merchant {
 	 * @param amount to add.
 	 */
 	public void addToWallet(double amount) {
-		this.wallet += amount;
+		setWallet(getWalletValue() + amount);
 	}
 	
+	/**
+	 * Extend the privateCollection with elements of the given Array.
+	 * @param extensionArray
+	 */
 	public void extendCollection(Artwork[] extensionArray) {
 		for (Artwork artwork : extensionArray) {
-			this.privateCollection.add(artwork);
+			getCollection().add(artwork); // Reason we take an array is due to the casting issues with List. 
 		}
 	}
 }
