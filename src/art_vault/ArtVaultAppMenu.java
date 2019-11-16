@@ -24,13 +24,9 @@ public final class ArtVaultAppMenu {
 			+ "4) Print the list of sculptures\n"
 			+ "5) Print the list of architectures\n"
 			+ "0) Exit";
-	private static final String sortingMethodPrompt = "1) Sort by name\n"
-			+ "2) Sort by artist\n"
-			+ "3) Sort by style\n"
-			+ "0) Exit";
-	
 	private static final String askForSearch = "Please enter your search querry: ";
-	
+	private static final String[][] searchMethods = {{"name", "birthday", "nationality"}, {"name", "birthday", "nationality"}, {"name", "style", "artist"},
+			{"name", "style", "artist", "matherial"}, {"name", "style"}};
 	private static String input(String querry) {
 		System.out.println(querry);
 		String output = userIO.nextLine();
@@ -51,24 +47,24 @@ public final class ArtVaultAppMenu {
 		}
 	}
 	
-	private static void printTheListSorted(Vault vault, IComparable[] arr) {
-		String prompt = input(sortingMethodPrompt);
-		switch(prompt) {
-		case "1":
-			printTheListSortedWithMethod(vault, arr, "name");
-			break;
-		case "2":
-			printTheListSortedWithMethod(vault, arr, "artist");
-			break;
-		case "3":
-			printTheListSortedWithMethod(vault, arr, "style");
-			break;
-		case "0":
-			System.exit(0);
-			break;
-		default:
-			System.out.println("Illegal argument entered.");
-			break;
+	private static void printTheListSorted(Vault vault, IComparable[] arr, String[] options) {
+		String querry = "";
+		int index = 1;
+		for (String option : options) {
+			querry += Integer.toString(index) + ") Sort by " + option + "\n"; 
+		}
+		querry += "0) Exit\n";
+		String prompt = input(querry);
+		try {
+			int optionIndex = Integer.parseInt(prompt);
+			if (optionIndex == 0) System.exit(0);
+			else {
+				printTheListSortedWithMethod(vault, arr, options[optionIndex - 1]);
+			}
+		} catch (NumberFormatException e) {
+			System.out.println("Please enter a number");
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println("Please enter a number inside the range");
 		}
 	}
 
@@ -79,34 +75,38 @@ public final class ArtVaultAppMenu {
 			System.out.println(result);
 		}
 	}
-
 	private static void printTheLists(Vault vault) {
 		String key = "";
-		IComparable[] arr = new IComparable[5];
+		IComparable[] guideArray = new IComparable[0];
+		IComparable[] comparableArray = new IComparable[0];
 		String prompt = input(chooseListPrompt);
+		boolean invalid = false;
 		switch (prompt) {
 		case "1":
-			printTheListSorted(vault, vault.getArtists().toArray(arr));
+			comparableArray = vault.getArtists().toArray(guideArray);
 			break;
 		case "2":
-			printTheListSorted(vault, vault.getArchitects().toArray(arr));
+			comparableArray = vault.getArchitects().toArray(guideArray);
 			break;
 		case "3":
-			printTheListSorted(vault, vault.getPaintings().toArray(arr));
+			comparableArray = vault.getPaintings().toArray(guideArray);
 			break;
 		case "4":
-			printTheListSorted(vault, vault.getSculptures().toArray(arr));
+			comparableArray = vault.getSculptures().toArray(guideArray);
 			break;
 		case "5":
-			printTheListSorted(vault, vault.getArchitectures().toArray(arr));
+			comparableArray = vault.getArchitectures().toArray(guideArray);
 			break;
 		case "0":
 			System.exit(0);
 			break;
 		default:
 			System.out.println("Invalid argument entered");
+			invalid = true;
 			break;
 		}
+		if (!invalid)
+			printTheListSorted(vault, comparableArray, searchMethods[Integer.parseInt(prompt) -1]);
 	}
 	
 	private static void trade(Vault mainVault) {

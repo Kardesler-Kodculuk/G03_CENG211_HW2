@@ -15,10 +15,13 @@ public class ListHelpers {
 	public static void sort(List<IComparable> list, String key){
 		int len = list.size();
 		for(int i = 0; i < len; i++) { // i - index for main loop
-			for(int j = 0; j < len - i - 2; j++) { // j - index for comparisons
+			for(int j = 0; j < len - i - 1; j++) { // j - index for comparisons
 				IComparable first = list.get(j);
 				IComparable second = list.get(j + 1);
-				if(first.compareTo(second, key) > 0) { // if first > second
+				if (j + 1  == len) {
+					continue;
+				}
+				else if(first.compareTo(second, key) > 0) { // if first > second
 					swap(list, j, j+1);
 				}
 			}
