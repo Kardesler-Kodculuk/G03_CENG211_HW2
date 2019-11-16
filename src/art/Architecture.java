@@ -59,6 +59,13 @@ public class Architecture extends Artwork {
 		return result;
 	}
 	
+	@Override 
+	public String toBill() {
+		String output = "Architecture: ";
+		output += "\n" + super.toBill();
+		return output;
+	}
+	
 	/**
 	 * Add an architect to the architects list of the Architecture.
 	 * @param architect

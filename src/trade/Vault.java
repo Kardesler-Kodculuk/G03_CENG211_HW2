@@ -96,7 +96,7 @@ public class Vault {
 	private String performOneTrade(Buyer buyer, Seller seller) {
 		Artwork art = randomTradableArtwork();
 		art.tradeToBuyer(buyer, seller);
-		String output = art.toString();
+		String output = art.toBill();
 		return output;
 	}
 	
@@ -116,22 +116,20 @@ public class Vault {
 	}
 	
 	/**
-	 * Performs the trade operation between buyer and seller
-	 * @param buyer - buyer object 
-	 * @param seller - seller object
-	 * @param piece - an artwork
+	 * Performs the trade operations between buyers and seller
 	 */
 	public String trade() {
 		String output = "";
 		output += calculateBalances();
-		output += "\nTrade started: ";
+		output += "\nTrade started:";
+		String saledArt = "";
 		for(int i = 0; i < 4; i++) {
 			Buyer buyer = buyers.get(i);
-			String saledArt = performOneTrade(buyer, seller);
-			output += "\nBuyer" + (i+1) + "bought:\n\n"
+			saledArt = performOneTrade(buyer, seller);
+			output += "\n\nBuyer " + (i+1) + " bought:\n\n"
 					+ saledArt;
 		}
-		output += "\nTrade completed: ";
+		output += "\n\nTrade completed: \n\n";
 		output += calculateBalances();
 		return output;
 	}

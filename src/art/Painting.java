@@ -86,13 +86,13 @@ public class Painting extends Artwork {
 	 * @param width
 	 * @return - area of the painting
 	 */
-	private double calcArea(double length, double width) {
+	private double calcArea() {
 		return this.length * this.width;
 	}
 	
 	@Override
 	public double calculateCost() {
-		double area = calcArea(this.length, this.width);
+		double area = calcArea();
 		switch(super.getStyle().name) {
 		case "Renaissance":
 			return area * 7;
@@ -111,6 +111,13 @@ public class Painting extends Artwork {
 				+ "\n\tWidth: " + this.width 
 				+ "\n\tArtist: " + this.artist.toString();
 		return str;
+	}
+	
+	@Override 
+	public String toBill() {
+		String output = "Painting: ";
+		output += "\n" + super.toBill();
+		return output;
 	}
 
 	@Override

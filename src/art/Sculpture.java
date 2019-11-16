@@ -48,7 +48,7 @@ public class Sculpture extends Artwork {
 
 	@Override
 	public boolean isTradable() {
-		if(this.getStyle().name == "Baroque") {
+		if(this.getStyle().name.equals("Baroque")) {
 			return false;
 		}
 		else {
@@ -58,13 +58,20 @@ public class Sculpture extends Artwork {
 
 	@Override
 	public double calculateCost() {
-		if(this.material.name == "marble") {
+		if(this.material.name.equals("Marble")) {
 			return this.weight * 15;
 		}
-		else if(this.material.name == "bronze"){
+		else if(this.material.name.equals("Bronze")){
 			return this.weight * 180;
 		}
 		return -1;
+	}
+	
+	@Override 
+	public String toBill() {
+		String output = "Sculpture: ";
+		output += "\n" + super.toBill();
+		return output;
 	}
 	
 	@Override

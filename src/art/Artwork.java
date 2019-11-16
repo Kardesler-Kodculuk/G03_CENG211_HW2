@@ -72,4 +72,11 @@ public abstract class Artwork implements IComparable<Artwork>, ITradable, ISearc
 		return (this.name.equals(querry) || this.getStyle().name.equals(querry));
 	}
 
+	public String toBill() {
+		String output = "";
+		output += "\tName: " + this.name.toString();
+		output += "\n\tPrice: " + this.calculateCost();
+		return output;
+	}
+
 }
