@@ -42,22 +42,45 @@ public abstract class Person implements IComparable<Person>, ISearchable{
 		return result;
 	}
 	
+	/**
+	 * Compares birtDates with this and other object
+	 * @param otherBirthdate - a date which is int
+	 * @return 1 if this bigger, 0 if they equal, -1 if other bigger
+	 */
+	private int compareBirthdates(int otherBirthdate) {
+		int result = 0;
+		if(this.birthDate < otherBirthdate) {
+			result = -1;
+		}
+		else if(this.birthDate > otherBirthdate) {
+			result = 1;
+		}
+		return result;
+	}
+	
 	@Override
 	public int compareTo(Person other, String key) {
+		int result = 0;
+		// for comparison we need lowercases of the strings
+		String lowerCase = "";
+		String otherLowerCase = "";
 		try {
-			if(key.equals("name")) {
-				return this.name.toLowerCase().compareTo(other.getName().toLowerCase());
-			}
-			else if(key.equals("birthday")) {
-				if(this.birthDate < other.getBirthDate()) {return -1;}
-				else if(this.birthDate > other.getBirthDate()) {return 1;}
-				else {return 0;}
-			}
-			else if(key.equals("nationality")) {
-				return this.nationality.compareTo(other.getNationality());
-			}
-			else {
-				throw new InvalidParameterException();
+			switch(key) {
+			case "name":
+				lowerCase = this.name.toLowerCase();
+				otherLowerCase = other.getName().toLowerCase();
+				result = lowerCase.compareTo(otherLowerCase);
+				break;
+			case "birthday": // birthday is an int no need for lowercase
+				result = this.compareBirthdates(other.getBirthDate());
+				break;
+			case "nationality":
+				lowerCase = this.nationality.toLowerCase();
+				otherLowerCase = other.getNationality().toLowerCase();
+				result = lowerCase.compareTo(otherLowerCase);
+				break;
+			default:
+				throw new InvalidParameterException();	
 			}
 
 		}
@@ -67,6 +90,7 @@ public abstract class Person implements IComparable<Person>, ISearchable{
 		catch(ClassCastException e) {
 			throw e;
 		}
+		return result;
 	}
 	
 	@Override
